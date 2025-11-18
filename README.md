@@ -1,39 +1,50 @@
-<<<<<<< HEAD
-# Campus Go - Package ready to run
+# CampusGo – Front-End Prototype
 
-Este pacote contém uma versão inicial do *Campus Go*:
-- Frontend: React + Vite
-- Backend: Flask (mock API com Dijkstra para rotas)
-- Arquivos de exemplo (mapa, estudantes) e assets (planta, logo, welcome image)
+CampusGo é um protótipo de navegação interna para campus acadêmico, desenvolvido **exclusivamente em React**, sem qualquer API, servidor ou banco de dados.  
+Todos os dados utilizados (mapa, alunos, aulas e rotas) são carregados **via arquivos JSON locais**, mantendo o foco total no front-end e na experiência visual da aplicação.
 
-## Como rodar
+Este projeto é uma versão **totalmente front-end**, criada para fins de demonstração, estudo e prototipação.
 
-### Backend (Flask)
-```
-cd backend
-python -m venv venv
-# Linux / Mac
-source venv/bin/activate
-# Windows
-# venv\Scripts\activate
-pip install -r requirements.txt
-python app.py
-```
-Servidor rodará em http://127.0.0.1:5000
+---
 
-### Frontend (React + Vite)
-Em outro terminal:
-```
-cd frontend
-npm install
-npm run dev
-```
-Vite normalmente abre em http://localhost:5173
+## 🚀 Sobre o Projeto
 
-### Observações
-- Substitua `backend/data/map.json` pelo mapa do seu campus (nodes + edges).
-- Substitua `backend/data/students.json` com dados reais ou integre à API da instituição.
-- A planta baixa SVG enviada foi copiada para `frontend/src/assets/plant.svg`.
-=======
-# campusGO
->>>>>>> 1fb0afca58122ad49d073af69e675d215ca5f253
+Este protótipo simula:
+
+- Login simples baseado em dados armazenados em `students.json`
+- Carregamento do mapa interno a partir de `map.json`
+- Visualização de locais, salas, caminhos e POIs
+- Geração de rotas usando apenas lógica no front-end
+- Interface em React limpa e funcional
+
+Não possui backend
+
+## 🧩 Como Rodar o Projeto
+
+Este projeto é 100% front-end.  
+Não existe backend, servidor Node, banco de dados ou API.  
+Basta rodar um servidor estático (como o Vite, Live Server ou o próprio preview do VS Code).
+
+### ✔️ Requisitos
+
+- Node.js instalado
+- Servidor estático 'Vite' 
+
+---
+
+### Como rodar com Vite:
+
+1. No terminal instale as dependências necessárias:
+   ```bash
+   npm install
+2. Inicie o servidor:
+   ```bash
+   npm run dev
+3. Acesse o servidor:
+   ```bash
+   http://localhost:5173
+   
+
+
+   
+
