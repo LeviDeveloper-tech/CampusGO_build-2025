@@ -1,0 +1,463 @@
+/* ===== CONTAINER GERAL ===== */
+.map-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8fafc;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== MENU HAMBÚRGUER ===== */
+.menu-toggle {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  width: 35px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ===== MENU LATERAL ===== */
+.sidebar {
+  position: fixed;
+  left: -260px;
+  top: 0;
+  height: 100%;
+  width: 260px;
+  background: #024221;
+  color: white;
+  padding: 60px 25px;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+  z-index: 1200;
+}
+.sidebar.visible {
+  left: 0;
+  opacity: 1;
+}
+.sidebar .logo {
+  width: 150px;
+  margin: 0 auto 30px auto;
+  display: block;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+.sidebar nav button {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  background: white;
+  color: #024221;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar nav button:hover {
+  background: #00907e;
+  color: white;
+}
+
+/* ===== TOPO ===== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza tudo */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  z-index: 1100;
+}
+
+.topbar.shifted {
+  left: 260px;
+  width: calc(100% - 260px);
+}
+
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza o grupo completo */
+  gap: 25px; /* Espaçamento entre elementos */
+  max-width: 950px;
+  width: 100%;
+}
+
+/* ===== SAUDAÇÃO ===== */
+.user-info {
+  color: #0b2545;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ===== BARRA DE PESQUISA ===== */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 8px 18px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 420px;
+  transition: all 0.3s ease;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  width: 100%;
+  font-size: 14px;
+  color: #333;
+  background: transparent;
+}
+
+.search-bar button {
+  background: #024221;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  background: #037b42;
+}
+
+/* ===== BOTÃO SAIR ===== */
+.logout-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background: #d9363e;
+  transform: translateY(-2px);
+}
+
+
+/* ===== MAPA ===== */
+.map-wrapper {
+  flex: 1;
+  position: relative;
+  background: #e8f0f6;
+  transition: margin-left 0.4s ease, filter 0.3s ease;
+  z-index: 10;
+}
+.map-wrapper.shrink {
+  margin-left: 260px;
+  filter: brightness(0.95);
+}
+.map-svg {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+/* ===== ROTA ===== */
+.route-line {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 200;
+  animation: moveRoute 1.8s linear infinite;
+}
+@keyframes moveRoute {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ===== NÓS ===== */
+.node-group:hover circle {
+  stroke: #00b894;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 4px rgba(0, 184, 148, 0.5));
+}
+
+/* ===== PAINÉIS ===== */
+.schedule-panel {
+  position: absolute;
+  bottom: 180px;
+  right: 30px;
+  background: #ffffff;
+  color: #024221;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 260px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 900;
+}
+.info-panel {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: #024221;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 240px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 900;
+}
+
+/* ===== TOPO ===== */
+.topbar-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  padding: 0 60px; /* puxamos um pouco mais para a direita */
+}
+.user-info {
+  color: #0b2545;
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 60px;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 8px 18px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  flex: 1;
+  margin: 0 40px;
+  max-width: 450px;
+  transition: all 0.3s ease;
+}
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  width: 100%;
+  font-size: 14px;
+  color: #333;
+}
+.search-bar button {
+  background: #024221;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.search-bar button:hover {
+  background: #037b42;
+}
+
+/* ===== PAINEL DE CRONOGRAMA (NOVO) ===== */
+.schedule-panel {
+  position: absolute;
+  bottom: 250px; /* subimos mais */
+  right: 30px;
+  background: #ffffff;
+  color: #024221;
+  border-radius: 14px;
+  padding: 18px;
+  min-width: 280px;
+  max-height: 350px;
+  overflow-y: auto;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  z-index: 900;
+  transition: all 0.3s ease;
+}
+.schedule-panel h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #024221;
+  border-bottom: 2px solid #cbd5e1;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.schedule-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.schedule-item {
+  font-size: 14px;
+  margin: 8px 0;
+  background: rgba(2, 66, 33, 0.06);
+  border-radius: 10px;
+  padding: 10px 12px;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+.schedule-item:hover {
+  background: rgba(2, 66, 33, 0.15);
+  border-left: 4px solid #00b894;
+  transform: translateX(-4px);
+}
+.aula-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.aula-header .dia {
+  font-size: 12px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* ===== BOTÃO PRINCIPAL ===== */
+.btn.primary {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  width: 100%;
+}
+.btn.primary:hover {
+  background: #009e7c;
+  transform: translateY(-2px);
+}
+
+/* ===== BOTÃO SAIR ===== */
+.logout-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logout-btn:hover {
+  background: #d9363e;
+  transform: translateY(-2px);
+}
+
+/* ===== POPUP DE PRESENÇA ===== */
+.presence-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.presence-box {
+  background: white;
+  color: #024221;
+  border-radius: 14px;
+  padding: 25px 35px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  width: 340px;
+  animation: fadeIn 0.3s ease;
+}
+
+.presence-box h3 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.presence-box p {
+  font-size: 14px;
+  color: #444;
+  margin: 10px 0 20px 0;
+}
+
+.presence-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.presence-buttons .btn {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.presence-buttons .btn.stay {
+  background: #00b894;
+  color: white;
+}
+
+.presence-buttons .btn.stay:hover {
+  background: #009e7c;
+}
+
+.presence-buttons .btn.exit {
+  background: #ff4d4f;
+  color: white;
+}
+
+.presence-buttons .btn.exit:hover {
+  background: #d9363e;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

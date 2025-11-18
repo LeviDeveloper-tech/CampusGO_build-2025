@@ -1,0 +1,111 @@
+// Mock data simulando o que o backend retornava
+
+export const admins = [
+  { id: 1, username: "admin", nome: "Administrador Master", senha: "admin123" },
+  { id: 2, username: "prof_joao", nome: "Professor João", senha: "senha123" },
+];
+
+export const students = [
+  { matricula: "1-2024233319", name: "Francisca Camilly Gomes de Oliveira" },
+  { matricula: "1-2024000001", name: "João Silva Santos" },
+  { matricula: "1-2024000002", name: "Maria Oliveira Costa" },
+];
+
+export const aulas = [
+  {
+    id: 1,
+    disciplina: "Programação Web",
+    horário: "08:00-09:40",
+    sala: "Laboratório 1",
+    sala_id: "n3",
+    data: "2025-10-27",
+    dia_semana: "Segunda-feira",
+    matricula: "1-2024233319",
+  },
+  {
+    id: 2,
+    disciplina: "Redes de Computadores",
+    horário: "10:00-11:40",
+    sala: "Laboratório de Redes",
+    sala_id: "n4",
+    data: "2025-10-28",
+    dia_semana: "Terça-feira",
+    matricula: "1-2024233319",
+  },
+];
+
+export const mapData = {
+  nodes: {
+    n1: { id: "n1", name: "Entrada Principal", x: 50, y: 300 },
+    n2: { id: "n2", name: "Corredor A", x: 200, y: 300 },
+    n3: { id: "n3", name: "Sala 101", x: 320, y: 220 },
+    n4: { id: "n4", name: "Sala 102", x: 320, y: 380 },
+    n5: { id: "n5", name: "Biblioteca", x: 500, y: 300 },
+    n6: { id: "n6", name: "Cantina", x: 500, y: 120 },
+  },
+  edges: [
+    { from: "n1", to: "n2", w: 150 },
+    { from: "n2", to: "n3", w: 130 },
+    { from: "n2", to: "n4", w: 130 },
+    { from: "n2", to: "n5", w: 300 },
+    { from: "n5", to: "n6", w: 200 },
+  ],
+};
+
+// Algoritmo de Dijkstra para calcular rota
+export function calculateRoute(nodes, edges, origin, destination) {
+  const distances = {};
+  const previous = {};
+  const unvisited = new Set();
+
+  Object.keys(nodes).forEach((node) => {
+    distances[node] = Infinity;
+    unvisited.add(node);
+  });
+
+  distances[origin] = 0;
+
+  while (unvisited.size > 0) {
+    let current = null;
+    let minDist = Infinity;
+
+    unvisited.forEach((node) => {
+      if (distances[node] < minDist) {
+        minDist = distances[node];
+        current = node;
+      }
+    });
+
+    if (current === null || distances[current] === Infinity) break;
+
+    unvisited.delete(current);
+
+    edges.forEach((edge) => {
+      if (edge.from === current && unvisited.has(edge.to)) {
+        const alt = distances[current] + edge.w;
+        if (alt < distances[edge.to]) {
+          distances[edge.to] = alt;
+          previous[edge.to] = current;
+        }
+      }
+      if (edge.to === current && unvisited.has(edge.from)) {
+        const alt = distances[current] + edge.w;
+        if (alt < distances[edge.from]) {
+          distances[edge.from] = alt;
+          previous[edge.from] = current;
+        }
+      }
+    });
+  }
+
+  // Reconstruir caminho
+  const path = [];
+  let current = destination;
+
+  while (current !== undefined) {
+    path.unshift(nodes[current]);
+    current = previous[current];
+  }
+
+  return path;
+}
