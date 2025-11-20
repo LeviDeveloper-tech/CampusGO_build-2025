@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { mapData, calculateRoute, aulas, students } from "../utils/mockData"; // ← Importar no topo
 import PresencePopup from './MapView/PresencePopup'
+import InfoPanel from "./MapView/InfoPanel";
+
 import "./MapView.css";
 
 export default function MapView({ user, mode, onLogout }) {
@@ -223,27 +225,7 @@ export default function MapView({ user, mode, onLogout }) {
         </svg>
 
         {/* PAINEL DE INFORMAÇÕES */}
-        <div className="info-panel">
-          <h3>Informações</h3>
-          {selected ? (
-            <>
-              <div>
-                <b>{selected.name}</b>
-              </div>
-              <div>ID: {selected.id}</div>
-              <div style={{ marginTop: 8 }}>
-                <button
-                  className="btn primary"
-                  onClick={() => requestRoute(selected.id)}
-                >
-                  Traçar rota até aqui
-                </button>
-              </div>
-            </>
-          ) : (
-            <div>Clique em um ponto do mapa</div>
-          )}
-        </div>
+          <InfoPanel selected={selected} onRequestRoute={requestRoute} />
 
         {/* CRONOGRAMA */}
         {mode === "student" && studentSchedule && studentSchedule.length > 0 && (
