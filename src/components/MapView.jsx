@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { mapData, calculateRoute, aulas, students } from "../utils/mockData"; // ← Importar no topo
+import PresencePopup from './MapView/PresencePopup'
 import "./MapView.css";
 
 export default function MapView({ user, mode, onLogout }) {
@@ -278,33 +279,13 @@ export default function MapView({ user, mode, onLogout }) {
 
       </div>
       {/* POPUP DE PRESENÇA */}
-{showPresencePopup && (
-  <div className="presence-popup">
-    <div className="presence-box">
-      <h3>👋 Tem alguém aí?</h3>
-      <p>O sistema voltará à tela inicial em 15 segundos se não houver resposta.</p>
-      <div className="presence-buttons">
-        <button
-          className="btn stay"
-          onClick={() => {
-            setShowPresencePopup(false);
-          }}
-        >
-          ✅ Estou aqui
-        </button>
-        <button
-          className="btn exit"
-          onClick={() => {
-            setShowPresencePopup(false);
-            onLogout();
-          }}
-        >
-          🚪 Sair agora
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+{/* POPUP DE PRESENÇA (agora componente separado) */}
+      {showPresencePopup && (
+        <PresencePopup
+          onStay={() => setShowPresencePopup(false)}
+          onLogout={onLogout}
+        />
+      )}
 
     </div>
   );
