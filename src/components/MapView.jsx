@@ -3,6 +3,7 @@ import { mapData, calculateRoute, aulas, students } from "../utils/mockData"; //
 import PresencePopup from './MapView/PresencePopup'
 import InfoPanel from "./MapView/InfoPanel";
 import SchedulePanel from "./MapView/SchedulePanel";
+import Sidebar from "./MapView/Sidebar";
 
 
 import "./MapView.css";
@@ -99,30 +100,10 @@ useEffect(() => {
   return (
     <div className="map-container">
       {/* BOTÃO HAMBÚRGUER */}
-      <div
-        className={`menu-toggle ${menuOpen ? "open" : ""}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      {/* MENU LATERAL */}
-      <aside className={`sidebar ${menuOpen ? "visible" : ""}`}>
-        <img
-          src="/Logo-branca-transparente.png"
-          alt="CampusGO"
-          className="logo"
-        />
-        <nav>
-          <button>🗺️ Mapa</button>
-          <button>☕ Cafeteria</button>
-          <button>🚻 Banheiros</button>
-          <button>🎓 Salas de Aula</button>
-          <button>📚 Biblioteca</button>
-        </nav>
-      </aside>
+      <Sidebar
+      menuOpen={menuOpen}
+      toggleMenu={() => setMenuOpen(!menuOpen)}
+      />
 
       {/* TOPO */}
       <header className={`topbar ${menuOpen ? "shifted" : ""}`}>
@@ -228,13 +209,13 @@ useEffect(() => {
 
         {/* CRONOGRAMA */}
         {mode === "student" && studentSchedule && studentSchedule.length > 0 && (
-  <SchedulePanel
-    schedule={studentSchedule}
-    onSelectSala={(id, name) => {
-      setSelected({ id, name });
-      requestRoute(id);
-    }}
-  />
+        <SchedulePanel
+          schedule={studentSchedule}
+          onSelectSala={(id, name) => {
+            setSelected({ id, name });
+            requestRoute(id);
+          }}
+        />
 )}
 
 
