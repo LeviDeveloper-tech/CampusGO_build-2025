@@ -4,6 +4,8 @@ import PresencePopup from './MapView/PresencePopup'
 import InfoPanel from "./MapView/InfoPanel";
 import SchedulePanel from "./MapView/SchedulePanel";
 import Sidebar from "./MapView/Sidebar";
+import Topbar from "./MapView/Topbar";
+
 
 
 import "./MapView.css";
@@ -106,25 +108,7 @@ useEffect(() => {
       />
 
       {/* TOPO */}
-      <header className={`topbar ${menuOpen ? "shifted" : ""}`}>
-        <div className="topbar-content">
-          <div className="user-info">
-            👋 Olá, {user?.name || "Visitante"}{" "}
-            {user?.matricula ? `(${user.matricula})` : ""}
-          </div>
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Pesquise o local que você procura..."
-            />
-            <button>🔍</button>
-          </div>
-          <button className="logout-btn" onClick={onLogout}>
-  🚪 Sair
-</button>
-
-        </div>
-      </header>
+        <Topbar user={user} menuOpen={menuOpen} onLogout={onLogout} />
 
       {/* MAPA */}
       <div
