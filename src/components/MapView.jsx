@@ -130,16 +130,17 @@ export default function MapView({ user, mode, onLogout }) {
 
         {/* CRONOGRAMA */}
         {mode === "student" &&
-          studentSchedule &&
-          studentSchedule.length > 0 && (
+          studentSchedule && studentSchedule.length > 0 && (
             <SchedulePanel
               schedule={studentSchedule}
-              onSelectSala={(id, name) => {
-                setSelected({ id, name });
-                requestRoute(id);
-              }}
+                onSelectSala={(id, name) => {
+                  setSelected({ id, name });
+                  requestRoute(id);
+                }}
             />
-          )}
+          )
+        }
+      
       </MapCanvas>
 
       {/* POPUP DE PRESENÇA */}
