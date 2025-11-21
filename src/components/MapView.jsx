@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { mapData, calculateRoute, aulas, students } from "../utils/mockData"; // ← Importar no topo
 import PresencePopup from './MapView/PresencePopup'
 import InfoPanel from "./MapView/InfoPanel";
+import SchedulePanel from "./MapView/SchedulePanel";
+
 
 import "./MapView.css";
 
@@ -18,18 +20,15 @@ export default function MapView({ user, mode, onLogout }) {
   const isPanning = useRef(false);
   const startPan = useRef({ x: 0, y: 0 });
 
-  useEffect(() => {
-    // Carregar cronograma do aluno - REMOVIDO require()
-    if (mode === "student" && user?.matricula) {
-      // Usar importação de topo
-      const aulasDosAluno = aulas.filter((a) => a.matricula === user.matricula);
-      if (aulasDosAluno.length > 0) {
-        setStudentSchedule(aulasDosAluno);
-      } else {
-        setStudentSchedule([]);
-      }
-    }
-  }, [mode, user]);
+
+useEffect(() => {
+  if (mode === "student" && user?.matricula) {
+    const aulasDoAluno = aulas.filter((aula) =>
+      aula.matriculas?.includes(user.matricula)
+    );
+    setStudentSchedule(aulasDoAluno);
+  }
+}, [mode, user]);
 
   function requestRoute(destNode) {
     const origin = "n1";
@@ -229,33 +228,13 @@ export default function MapView({ user, mode, onLogout }) {
 
         {/* CRONOGRAMA */}
         {mode === "student" && studentSchedule && studentSchedule.length > 0 && (
-  <div className="schedule-panel">
-    <h3>📅 Aulas da Semana</h3>
-    <ul>
-      {studentSchedule.map((aula, i) => (
-        <li
-          key={i}
-          onClick={() => {
-            setSelected({
-              id: aula.sala_id,
-              name: aula.sala
-            });
-            requestRoute(aula.sala_id);
-          }}
-          className="schedule-item"
-          title={`Clique para ver o caminho até ${aula.sala}`}
-        >
-          <div className="aula-header">
-            <strong>{aula.disciplina}</strong>
-            <span className="dia">{aula.dia_semana}</span>
-          </div>
-          <div className="aula-body">
-            <span>{aula.horário}</span> — <b>{aula.sala}</b>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
+  <SchedulePanel
+    schedule={studentSchedule}
+    onSelectSala={(id, name) => {
+      setSelected({ id, name });
+      requestRoute(id);
+    }}
+  />
 )}
 
 
@@ -271,4 +250,4 @@ export default function MapView({ user, mode, onLogout }) {
 
     </div>
   );
-}
+  }
