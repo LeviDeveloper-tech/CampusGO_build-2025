@@ -7,6 +7,7 @@ export const admins = [
 
 export const students = [
   { matricula: "1-2024233319", name: "Francisca Camilly Gomes de Oliveira" },
+  { matricula: "40028922", name: "Yudi Japonês" },
   { matricula: "1-2024000001", name: "João Silva Santos" },
   { matricula: "1-2024000002", name: "Maria Oliveira Costa" },
 ];
@@ -20,7 +21,7 @@ export const aulas = [
     sala_id: "n3",
     data: "2025-10-27",
     dia_semana: "Segunda-feira",
-    matricula: "1-2024233319",
+    matriculas: ["1-2024233319", "1-2024000002", "40028922"], // <- array de alunos
   },
   {
     id: 2,
@@ -30,9 +31,10 @@ export const aulas = [
     sala_id: "n4",
     data: "2025-10-28",
     dia_semana: "Terça-feira",
-    matricula: "1-2024233319",
+    matriculas: ["1-2024000001", "40028922"], // <- outro aluno
   },
 ];
+
 
 export const mapData = {
   nodes: {
