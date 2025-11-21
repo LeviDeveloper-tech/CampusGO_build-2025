@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { mapData, calculateRoute, aulas, students } from "../utils/mockData"; // ← Importar no topo
-import PresencePopup from './MapView/PresencePopup'
+import { mapData, calculateRoute, aulas } from "../utils/mockData";
+import PresencePopup from "./MapView/PresencePopup";
 import InfoPanel from "./MapView/InfoPanel";
 import SchedulePanel from "./MapView/SchedulePanel";
 import Sidebar from "./MapView/Sidebar";
 import Topbar from "./MapView/Topbar";
-
-
+import MapCanvas from "./MapView/MapCanvas";
 
 import "./MapView.css";
 
@@ -23,15 +22,14 @@ export default function MapView({ user, mode, onLogout }) {
   const isPanning = useRef(false);
   const startPan = useRef({ x: 0, y: 0 });
 
-
-useEffect(() => {
-  if (mode === "student" && user?.matricula) {
-    const aulasDoAluno = aulas.filter((aula) =>
-      aula.matriculas?.includes(user.matricula)
-    );
-    setStudentSchedule(aulasDoAluno);
-  }
-}, [mode, user]);
+  useEffect(() => {
+    if (mode === "student" && user?.matricula) {
+      const aulasDoAluno = aulas.filter((aula) =>
+        aula.matriculas?.includes(user.matricula)
+      );
+      setStudentSchedule(aulasDoAluno);
+    }
+  }, [mode, user]);
 
   function requestRoute(destNode) {
     const origin = "n1";
@@ -101,118 +99,56 @@ useEffect(() => {
 
   return (
     <div className="map-container">
-      {/* BOTÃO HAMBÚRGUER */}
+      {/* MENU LATERAL */}
       <Sidebar
-      menuOpen={menuOpen}
-      toggleMenu={() => setMenuOpen(!menuOpen)}
+        menuOpen={menuOpen}
+        toggleMenu={() => setMenuOpen(!menuOpen)}
       />
 
       {/* TOPO */}
-        <Topbar user={user} menuOpen={menuOpen} onLogout={onLogout} />
+      <Topbar user={user} menuOpen={menuOpen} onLogout={onLogout} />
 
       {/* MAPA */}
-      <div
-        className={`map-wrapper ${menuOpen ? "shrink" : ""}`}
-        onWheel={handleWheel}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
+      <MapCanvas
+        nodes={mapData.nodes}
+        edges={mapData.edges}
+        path={path}
+        selected={selected}
+        onSelectNode={setSelected}
+        viewBox={vb}
+        offset={offset}
+        zoom={zoom}
+        isPanning={isPanning.current}
+        svgRef={svgRef}
+        handleWheel={handleWheel}
+        handleMouseDown={handleMouseDown}
+        handleMouseMove={handleMouseMove}
+        handleMouseUp={handleMouseUp}
       >
-        <svg
-          ref={svgRef}
-          viewBox={vb}
-          className="map-svg"
-          style={{
-            transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
-            transformOrigin: "center center",
-            transition: isPanning.current ? "none" : "transform 0.1s ease",
-          }}
-        >
-          <rect
-            x={minX}
-            y={minY}
-            width={maxX - minX}
-            height={maxY - minY}
-            fill="#f7fbff"
-          />
-
-          {mapData.edges.map((e, i) => {
-            const a = mapData.nodes[e.from];
-            const b = mapData.nodes[e.to];
-            return (
-              <line
-                key={i}
-                x1={a.x}
-                y1={a.y}
-                x2={b.x}
-                y2={b.y}
-                stroke="#cbd5e1"
-                strokeWidth={6}
-                strokeLinecap="round"
-              />
-            );
-          })}
-
-          {path.length > 0 && (
-            <polyline
-              className="route-line"
-              points={path.map((p) => `${p.x},${p.y}`).join(" ")}
-              fill="none"
-              stroke="#00b894"
-              strokeWidth={10}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              opacity={0.9}
-            />
-          )}
-
-          {nodes.map((n) => {
-            const isTarget = selected && selected.id === n.id;
-            return (
-              <g
-                key={n.id}
-                transform={`translate(${n.x},${n.y})`}
-                className="node-group"
-                onClick={() => setSelected(n)}
-              >
-                <circle
-                  r={isTarget ? 14 : 10}
-                  fill={isTarget ? "#00b894" : "#0984e3"}
-                  stroke="#ffffff"
-                  strokeWidth={2}
-                />
-                <title>{n.name}</title>
-              </g>
-            );
-          })}
-        </svg>
-
         {/* PAINEL DE INFORMAÇÕES */}
-          <InfoPanel selected={selected} onRequestRoute={requestRoute} />
+        <InfoPanel selected={selected} onRequestRoute={requestRoute} />
 
         {/* CRONOGRAMA */}
-        {mode === "student" && studentSchedule && studentSchedule.length > 0 && (
-        <SchedulePanel
-          schedule={studentSchedule}
-          onSelectSala={(id, name) => {
-            setSelected({ id, name });
-            requestRoute(id);
-          }}
-        />
-)}
+        {mode === "student" &&
+          studentSchedule &&
+          studentSchedule.length > 0 && (
+            <SchedulePanel
+              schedule={studentSchedule}
+              onSelectSala={(id, name) => {
+                setSelected({ id, name });
+                requestRoute(id);
+              }}
+            />
+          )}
+      </MapCanvas>
 
-
-      </div>
       {/* POPUP DE PRESENÇA */}
-{/* POPUP DE PRESENÇA (agora componente separado) */}
       {showPresencePopup && (
         <PresencePopup
           onStay={() => setShowPresencePopup(false)}
           onLogout={onLogout}
         />
       )}
-
     </div>
   );
-  }
+}
