@@ -125,7 +125,7 @@ export default function LoginScreen({ onLogin, onVisitor }) {
 
         <div className="row">
           <button className="btn-visitor" onClick={onVisitor}>
-            Acessar como visitante
+            Acessar como visitanteee
           </button>
         </div>
 
