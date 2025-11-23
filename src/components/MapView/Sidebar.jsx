@@ -23,11 +23,30 @@ export default function Sidebar({ menuOpen, toggleMenu }) {
           className="logo"
         />
         <nav>
-          <button>🗺️ Mapa</button>
-          <button>☕ Cafeteria</button>
-          <button>🚻 Banheiros</button>
-          <button>🎓 Salas de Aula</button>
-          <button>📚 Biblioteca</button>
+          <button>
+            <img src="public/mapa.png.png" alt="" />
+            Mapa
+          </button>
+
+          <button>
+            <img src="public/cafeteria.png.png" alt="" />
+            Cafeteria
+          </button>
+
+          <button>
+            <img src="public/banheiro.png.png" alt="" />
+            Banheiros
+          </button>
+
+          <button>
+            <img src="public/sala.png.png" alt="" />
+            Salas de Aula
+          </button>
+
+          <button>
+            <img src="public/biblioteca.png.png" alt="" />
+            Biblioteca
+          </button>
         </nav>
       </aside>
     </>
