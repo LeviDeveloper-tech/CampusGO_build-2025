@@ -49,24 +49,28 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: 80px;/* barra fina sempre visível */
+  width: 80px;
+  /* barra fina sempre visível */
   background: #024221;
   color: white;
   padding: 60px 10px;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
   transition: all 0.4s ease-in-out;
   z-index: 1200;
-  overflow: hidden;/* para esconder texto */
+  overflow: hidden;
+  /* para esconder texto */
 }
 
 .sidebar.visible {
-  width: 260px;/* abre o menu completo */
+  width: 260px;
+  /* abre o menu completo */
   padding: 60px 25px;
 }
 
 .sidebar .logo {
   opacity: 0;
-  transform: translateY(-20px);/* começa um pouco acima */
+  transform: translateY(-20px);
+  /* começa um pouco acima */
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -76,7 +80,8 @@
   display: block;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
   opacity: 1;
-  transform: translateY(0);/* volta para posição original */
+  transform: translateY(0);
+  /* volta para posição original */
 }
 
 .sidebar nav button {
@@ -130,12 +135,11 @@
   left: 0;
   width: 100%;
   height: 70px;
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* Centraliza tudo */
+  justify-content: center;/* Centraliza tudo */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
   z-index: 1100;
@@ -149,10 +153,8 @@
 .topbar-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* Centraliza o grupo completo */
-  gap: 25px;
-  /* Espaçamento entre elementos */
+  justify-content: center;/* Centraliza o grupo completo */
+  gap: 25px;/* Espaçamento entre elementos */
   max-width: 950px;
   width: 100%;
 }
@@ -169,7 +171,7 @@
 .search-bar {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background-color: #024221;
   border-radius: 40px;
   padding: 8px 18px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
