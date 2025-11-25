@@ -32,7 +32,7 @@ export default function MapView({ user, mode, onLogout }) {
   }, [mode, user]);
 
   function requestRoute(destNode) {
-    const origin = "n1";
+    const origin = "n0"; // Ponto de partida fixo "Você está aqui"
     const route = calculateRoute(mapData.nodes, mapData.edges, origin, destNode);
     setPath(route);
   }
@@ -40,7 +40,7 @@ export default function MapView({ user, mode, onLogout }) {
   function handleWheel(e) {
     e.preventDefault();
     const delta = -e.deltaY * 0.001;
-    setZoom((z) => Math.min(Math.max(0.5, z + delta), 3));
+    setZoom((z) => Math.min(Math.max(0.35, z + delta), 3));
   }
 
   function handleMouseDown(e) {
