@@ -526,3 +526,24 @@
     transform: scale(1);
   }
 }
+
+/* Nodes invisíveis (curva) */
+.curve-node circle {
+  fill: transparent;       
+
+}
+
+/* Nodes de destino (com name, retângulo + texto) */
+.text-node rect {
+  fill: #ffffff;
+  padding: 0px;
+  rx: 1;
+}
+
+.text-node text {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  fill: #024221;
+}
+

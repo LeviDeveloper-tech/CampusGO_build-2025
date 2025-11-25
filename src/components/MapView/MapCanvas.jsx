@@ -1,6 +1,7 @@
 import React from "react";
 import "../MapView.css";
 import MapSVG from "../assets/map.svg?react"
+import TextLabelDestination from "./TextLabelDestination";
 
 export default function MapCanvas({
   nodes,
@@ -61,39 +62,46 @@ export default function MapCanvas({
         )}
 
         {/* Nós clicáveis: círculo + texto */}
-        {nodes &&
-          Object.values(nodes).map((node) => (
-            <g
-              key={node.id}
-              className="node-group"
-              transform={`translate(${node.x}, ${node.y})`}
-              onClick={() => onSelectNode(node)}
-              style={{ cursor: "pointer", pointerEvents: "auto" }} // reabilita clique
-            >
-              <circle r="1" fill="#024221" stroke="#fff" strokeWidth="2" />
-              <text
-                x={-50}
-                y={5}
-                fontSize="14"
-                fill="#024221"
-                fontWeight="bold"
-                style={{ pointerEvents: "auto", cursor: "pointer" }}
-                onClick={(e) => {
-                  e.stopPropagation(); // evita duplo clique no g
-                  onSelectNode(node);
-                }}
-              >
-                {node.name}
-              </text>
-            </g>
-          ))}
-      </svg>
-        
+        {/* Primeiro: renderiza os invisíveis */}
+          {nodes &&
+          Object.values(nodes)
+          .filter((node) => !node.name)
+          .map((node) => (
+                <g
+                  key={node.id}
+                  className="curve-node"
+                  transform={`translate(${node.x}, ${node.y})`}
+                >
+                  <circle r="6" />
+                </g>
+              )
+            )
+          }
 
-
-
-
-
+          {/* Depois: renderiza os visíveis */}
+          {nodes &&
+            Object.values(nodes)
+              .filter((node) => !!node.name)
+              .map((node) => (
+                <g
+                  key={node.id}
+                  className="text-node"
+                  transform={`translate(${node.x}, ${node.y})`}
+                  style={{ cursor: "pointer", pointerEvents: "auto" }}
+                  onClick={() => onSelectNode(node)}
+                >
+                  <TextLabelDestination
+                    text={node.name}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelectNode(node);
+                    }}
+                  />
+                </g>
+              )
+            )
+          }
+        </svg>
       {/* Renderiza os painéis filhos (InfoPanel, SchedulePanel, etc.) */}
       {children}
     </div>

@@ -40,7 +40,7 @@ export default function MapView({ user, mode, onLogout }) {
   function handleWheel(e) {
     e.preventDefault();
     const delta = -e.deltaY * 0.001;
-    setZoom((z) => Math.min(Math.max(0.5, z + delta), 3));
+    setZoom((z) => Math.min(Math.max(0.35, z + delta), 3));
   }
 
   function handleMouseDown(e) {
