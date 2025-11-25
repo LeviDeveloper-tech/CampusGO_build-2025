@@ -32,7 +32,7 @@ export default function MapView({ user, mode, onLogout }) {
   }, [mode, user]);
 
   function requestRoute(destNode) {
-    const origin = "n1";
+    const origin = "n0"; // Ponto de partida fixo "Você está aqui"
     const route = calculateRoute(mapData.nodes, mapData.edges, origin, destNode);
     setPath(route);
   }

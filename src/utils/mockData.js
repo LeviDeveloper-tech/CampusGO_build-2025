@@ -38,15 +38,20 @@ export const aulas = [
 
 export const mapData = {
   nodes: {
-    n1: { id: "n1", name: "Entrada Principal", x: 50, y: 300 },
-    n2: { id: "n2", name: "Corredor A", x: 200, y: 300 },
-    n3: { id: "n3", name: "Sala 101", x: 320, y: 220 },
-    n4: { id: "n4", name: "Sala 102", x: 320, y: 380 },
-    n5: { id: "n5", name: "Biblioteca", x: 500, y: 300 },
-    n6: { id: "n6", name: "Cantina", x: 500, y: 120 },
+    n0: { id: "n0", name: "Você está aqui", x: 145, y: 290 },
+    n1: { id: "n1", name: "Entrada Principal", x: 60, y: 360 },
+    n2: { id: "n2", name: "Elevadores", x: 180, y: 140 },
+    n3: { id: "n3", name: "Banheiros", x: 315, y: 125 },
+    n4: { id: "n4", name: "Salão Nobre", x: 155, y: 540 },
+    n5: { id: "n5", name: "Biblioteca", x: 400, y: 140},
+    n6: { id: "n6", name: "Cantina", x: 515, y: 510 },
+    n7: { id: "n7", name: "Praça de Alimentação 'A'", x: 170, y: 690 },
+    n8: { id: "n8", name: "Espaço Social", x: 370, y: 550 },
+    n9: { id: "n9", name: "Bloco B", x: 755, y: 370 },
+    n10: { id: "n10", name: "Igreja Bom Pastor", x: 435, y: 680 },
   },
   edges: [
-    { from: "n1", to: "n2", w: 150 },
+    { from: "n0", to: "n1", w: 150 },
     { from: "n2", to: "n3", w: 130 },
     { from: "n2", to: "n4", w: 130 },
     { from: "n2", to: "n5", w: 300 },
