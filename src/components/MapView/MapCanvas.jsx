@@ -22,14 +22,14 @@ export default function MapCanvas({
       onMouseLeave={handleMouseUp}
     >
       <MapSVG
-      className="map-svg"
-     style={{
-       width: "90%", height: "auto",
-       transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
-       transformOrigin: "center center",
-       transition: isPanning ? "none" : "transform 0.1s ease",
-      }}
-/>
+        className="map-svg"
+        style={{
+          width: "90%", height: "auto",
+          transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
+          transformOrigin: "center center",
+          transition: isPanning ? "none" : "transform 0.1s ease",
+        }}
+      />
 
 
 
