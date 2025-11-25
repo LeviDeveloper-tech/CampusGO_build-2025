@@ -527,11 +527,7 @@
   }
 }
 
-/* Nodes invisíveis (curva) */
-.curve-node circle {
-  fill: transparent;       
 
-}
 
 /* Nodes de destino (com name, retângulo + texto) */
 .text-node rect {
@@ -546,4 +542,16 @@
   font-weight: bold;
   fill: #024221;
 }
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+.text-node.selected text {
+  fill: #06c449;   /* texto destacado */
+  animation: pulse 1.2s infinite ease-in-out;         
+}
+
 

@@ -45,13 +45,13 @@ export const mapData = {
     n2: { id: "n2", name: "Elevadores", x: 173, y: 145 },
     n3: { id: "n3", name: "Banheiros", x: 300, y: 130 },
     n4: { id: "n4", name: "Salão Nobre", x: 145, y: 540 },
-    n5: { id: "n5", name: "Biblioteca", x: 400, y: 145},
+    n5: { id: "n5", name: "Biblioteca", x: 385, y: 145},
     n6: { id: "x6", name: "Cantina", x: 515, y: 510 },
     n7: { id: "n7", name: "Praça de Alimentação 'A'", x: 210, y: 690 },
     n8: { id: "n8", name: "Espaço Social", x: 365, y: 580 },
-    n9: { id: "n9", name: "Bloco B", x: 730, y: 360 },
+    n9: { id: "n9", name: "Bloco B", x: 759, y: 360 },
     n10: { id: "n10", name: "Igreja Bom Pastor", x: 450, y: 680 },
-    n11: { id: "n11", name: "Estacionamento B", x: 605, y: 730 },
+    n11: { id: "n11", name: "Estacionamento B", x: 610, y: 750 },
 
     //Pontos curvas invisíveis
     x0: {id: "x0", x:145 ,y:360 },
@@ -65,8 +65,8 @@ export const mapData = {
     x6: {id: "x6", x:585, y:512},
     x7: {id: "x7", x:585, y:600},
     x8: {id: "x8", x:605, y:600},
-    x9: {id: "x9", x:605, y:775},
-    x10: {id: "x10", x:450, y:775},
+    x9: {id: "x9", x:605, y:785},
+    x10: {id: "x10", x:450, y:785},
 
 
 

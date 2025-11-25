@@ -9,6 +9,7 @@ export default function MapCanvas({
   onSelectNode,
   offset,
   zoom,
+  selected,
   isPanning,
   handleWheel,
   handleMouseDown,
@@ -64,43 +65,25 @@ export default function MapCanvas({
         {/* Nós clicáveis: círculo + texto */}
         {/* Primeiro: renderiza os invisíveis */}
           {nodes &&
-          Object.values(nodes)
-          .filter((node) => !node.name)
-          .map((node) => (
-                <g
-                  key={node.id}
-                  className="curve-node"
-                  transform={`translate(${node.x}, ${node.y})`}
-                >
-                  <circle r="6" />
-                </g>
-              )
-            )
-          }
-
-          {/* Depois: renderiza os visíveis */}
-          {nodes &&
-            Object.values(nodes)
-              .filter((node) => !!node.name)
-              .map((node) => (
-                <g
-                  key={node.id}
-                  className="text-node"
-                  transform={`translate(${node.x}, ${node.y})`}
-                  style={{ cursor: "pointer", pointerEvents: "auto" }}
-                  onClick={() => onSelectNode(node)}
-                >
-                  <TextLabelDestination
-                    text={node.name}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectNode(node);
-                    }}
-                  />
-                </g>
-              )
-            )
-          }
+  Object.values(nodes)
+    .filter((node) => !!node.name)
+    .map((node) => (
+      <g
+        key={node.id}
+        className={`text-node ${selected?.id === node.id ? "selected" : ""}`}
+        transform={`translate(${node.x}, ${node.y})`}
+        style={{ cursor: "pointer", pointerEvents: "auto" }}
+        onClick={() => onSelectNode(node)}
+      >
+        <TextLabelDestination
+          text={node.name}
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelectNode(node);
+          }}
+        />
+      </g>
+    ))}
         </svg>
       {/* Renderiza os painéis filhos (InfoPanel, SchedulePanel, etc.) */}
       {children}
