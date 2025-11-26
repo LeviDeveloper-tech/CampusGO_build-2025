@@ -6,6 +6,7 @@ import SchedulePanel from "./MapView/SchedulePanel";
 import Sidebar from "./MapView/Sidebar";
 import Topbar from "./MapView/Topbar";
 import MapCanvas from "./MapView/MapCanvas";
+import { descriptionNodes } from "../utils/descriptionNodes";
 
 import "./MapView.css";
 
@@ -114,7 +115,12 @@ export default function MapView({ user, mode, onLogout }) {
         edges={mapData.edges}
         path={path}
         selected={selected}
-        onSelectNode={setSelected}
+        onSelectNode={(node) =>
+          setSelected({
+            ...node,
+            resumo: descriptionNodes[node.id] || "Local não mapeado",
+          })
+        }
         viewBox={vb}
         offset={offset}
         zoom={zoom}
@@ -133,14 +139,16 @@ export default function MapView({ user, mode, onLogout }) {
           studentSchedule && studentSchedule.length > 0 && (
             <SchedulePanel
               schedule={studentSchedule}
-                onSelectSala={(id, name) => {
-                  setSelected({ id, name });
-                  requestRoute(id);
-                }}
+              onSelectSala={(id, name) => {
+                setSelected({
+                  id,
+                  name,
+                  resumo: descriptionNodes[id] || "Local não mapeado",
+                });
+                requestRoute(id);
+              }}
             />
-          )
-        }
-      
+          )}
       </MapCanvas>
 
       {/* POPUP DE PRESENÇA */}

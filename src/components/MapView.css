@@ -266,18 +266,6 @@
 }
 
 /* ===== PAINÉIS ===== */
-.schedule-panel {
-  position: absolute;
-  bottom: 180px;
-  right: 30px;
-  background: #ffffff;
-  color: #024221;
-  border-radius: 12px;
-  padding: 16px;
-  min-width: 260px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 900;
-}
 
 .info-panel {
   position: absolute;
@@ -349,7 +337,7 @@
 /* ===== PAINEL DE CRONOGRAMA (NOVO) ===== */
 .schedule-panel {
   position: absolute;
-  bottom: 250px;
+  bottom: 265px;
   /* subimos mais */
   right: 30px;
   background: #ffffff;
@@ -552,6 +540,12 @@
 .text-node.selected text {
   fill: #06c449;   /* texto destacado */
   animation: pulse 1.2s infinite ease-in-out;         
+}
+
+
+
+.info-panel div {
+  white-space: pre-line; /* Mantém quebras de linha no texto do infoPanel*/
 }
 
 
