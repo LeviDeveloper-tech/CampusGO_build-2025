@@ -15,10 +15,10 @@ export const students = [
 export const aulas = [
   {
     id: 1,
-    disciplina: "Programação Web",
+    disciplina: "Lógica Matemática",
     horário: "08:00-09:40",
-    sala: "Laboratório 1",
-    sala_id: "n3",
+    sala: "Sala 502",
+    sala_id: "sA1",
     data: "2025-10-27",
     dia_semana: "Segunda-feira",
     matriculas: ["1-2024233319", "1-2024000002", "40028922"], // <- array de alunos
@@ -27,8 +27,8 @@ export const aulas = [
     id: 2,
     disciplina: "Redes de Computadores",
     horário: "10:00-11:40",
-    sala: "Laboratório de Redes",
-    sala_id: "n4",
+    sala: "Laboratório de Informática I",
+    sala_id: "sB1",
     data: "2025-10-28",
     dia_semana: "Terça-feira",
     matriculas: ["1-2024000001", "40028922"], // <- outro aluno
@@ -40,7 +40,7 @@ export const mapData = {
   nodes: {
 
     // Pontos destinos visiveis
-    n0: { id: "n0", name: "Você está aqui", x: 145, y: 290 },
+    n0: { id: "n0", name: "Você está aqui!", x: 145, y: 290 },
     n1: { id: "n1", name: "Entrada Principal", x: 60, y: 360 },
     n2: { id: "n2", name: "Elevadores", x: 173, y: 145 },
     n3: { id: "n3", name: "Banheiros", x: 300, y: 130 },
@@ -52,6 +52,11 @@ export const mapData = {
     n9: { id: "n9", name: "Bloco B", x: 759, y: 360 },
     n10: { id: "n10", name: "Igreja Bom Pastor", x: 450, y: 680 },
     n11: { id: "n11", name: "Estacionamento B", x: 610, y: 750 },
+
+    // Pontos Salas 'Ilusórias'
+    sA1: {id: "sA1", x:170, y:120},
+    sB1: {id: "sB1", x:800, y:600},
+    
 
     //Pontos curvas invisíveis
     x0: {id: "x0", x:145 ,y:360 },
@@ -119,6 +124,20 @@ export const mapData = {
     { from: "x1", to: "x5", w: 130 }, //x1 -> x5
     { from: "x5", to: "x6", w: 130 }, //x5 -> x6
     { from: "x6", to: "n6", w: 130 }, //x6 -> Cantina
+
+    //=======Rota Sala A=======
+    { from: "n0", to: "x3", w: 200 },
+    { from: "x3", to: "x4", w: 200 },
+    { from: "x4", to: "sA1", w: 200 },
+
+    //=======Rota Sala B=======
+    { from: "x0", to: "x1", w: 130 }, //x0 -> x1
+    { from: "x1", to: "x5", w: 130 }, //x1 -> x5
+    { from: "x5", to: "x6", w: 130 }, //x5 -> x6
+    { from: "x6", to: "x7", w: 130 }, //x6 -> x7
+    { from: "x7", to: "x8", w: 130 }, //x7 -> x8
+    { from: "x8", to: "sB1", w: 130 }, //x8 -> Sala B
+
    
     //=======Rota para Estacionameto B=======
     { from: "x0", to: "x1", w: 130 }, //x0 -> x1
