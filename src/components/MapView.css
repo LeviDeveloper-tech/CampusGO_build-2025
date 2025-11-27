@@ -269,7 +269,7 @@
 
 .info-panel {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   right: 30px;
   background: #024221;
   color: #ffffff;
@@ -337,8 +337,7 @@
 /* ===== PAINEL DE CRONOGRAMA (NOVO) ===== */
 .schedule-panel {
   position: absolute;
-  bottom: 265px;
-  /* subimos mais */
+  bottom: 300px;
   right: 30px;
   background: #ffffff;
   color: #024221;
@@ -414,6 +413,25 @@
   background: #009e7c;
   transform: translateY(-2px);
 }
+
+/* ======btn.secondary======= */
+.btn.secondary {
+  background: transparent;
+  color: white;
+  border: solid 1px white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
 
 /* ===== BOTÃO SAIR ===== */
 .logout-btn {

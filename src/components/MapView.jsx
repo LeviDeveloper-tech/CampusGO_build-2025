@@ -132,7 +132,7 @@ export default function MapView({ user, mode, onLogout }) {
         handleMouseUp={handleMouseUp}
       >
         {/* PAINEL DE INFORMAÇÕES */}
-        <InfoPanel selected={selected} onRequestRoute={requestRoute} />
+        <InfoPanel selected={selected} onRequestRoute={requestRoute} path={path} onCancelRoute={() => setPath([])} />
 
         {/* CRONOGRAMA */}
         {mode === "student" &&
