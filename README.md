@@ -43,8 +43,20 @@ Basta rodar um servidor estático (como o Vite, Live Server ou o próprio previe
 3. Acesse o servidor:
    ```bash
    http://localhost:5173
-   
 
+
+## 👨‍👩‍👦 Créditos
+
+Projeto desenvolvido por:
+
+- 👨‍💻 [Levi Vieira](https://github.com/LeviDeveloper-tech/)
+- 👨‍💻 [João Lucas](https://github.com/juaulucas)
+- 👨‍💻 [João Victor](https://github.com/DmRllJoao/)
+
+
+## 📜 Licença
+Este projeto está licenciado sob a [MIT License](LICENSE).  
+Você é livre para usar, modificar e distribuir este código, desde que preserve os créditos ao autor original.
 
    
 
